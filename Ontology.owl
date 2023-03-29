@@ -1,0 +1,941 @@
+@prefix : <http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dctypes: <http://purl.org/dc/dcmitype#> .
+@base <http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina> .
+
+<http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#containsOffice
+:containsOffice rdf:type owl:ObjectProperty ;
+                owl:inverseOf :isContainedIn ;
+                rdf:type owl:InverseFunctionalProperty ;
+                rdfs:domain :Building ;
+                rdfs:range :Office ;
+                rdfs:comment "containsOffice relates a building and the offices it contains." ;
+                rdfs:label "containsOffice" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#hasBuilding
+:hasBuilding rdf:type owl:ObjectProperty ;
+             owl:inverseOf :isBuildingOf ;
+             rdf:type owl:InverseFunctionalProperty ;
+             rdfs:domain :Institute ;
+             rdfs:range :Building ;
+             rdfs:comment "hasBuilding relates an institute and its building(s)." ;
+             rdfs:label "hasBuilding" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#hasContractWith
+:hasContractWith rdf:type owl:ObjectProperty ;
+                 owl:inverseOf :hasEmployee ;
+                 rdf:type owl:FunctionalProperty ;
+                 rdfs:domain :Employee ;
+                 rdfs:range :ResearchOrganization ;
+                 rdfs:comment "hasContractWith relates an employee with the research organization it works for." ;
+                 rdfs:label "hasContractWith" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#hasDirector
+:hasDirector rdf:type owl:ObjectProperty ;
+             owl:inverseOf :isDirectorOf ;
+             rdf:type owl:FunctionalProperty ;
+             rdfs:domain :Institute ;
+             rdfs:range :ResearchDirector ;
+             rdfs:comment "hasDirector relates an institute with their director." ;
+             rdfs:label "hasDirector" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#hasEmployee
+:hasEmployee rdf:type owl:ObjectProperty ,
+                      owl:InverseFunctionalProperty ;
+             rdfs:domain :ResearchOrganization ;
+             rdfs:range :Employee ;
+             rdfs:comment "hasEmployee relates a research organization with its employee(s)." ;
+             rdfs:label "hasEmployee" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#hasGroupMember
+:hasGroupMember rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :hasMember ;
+                owl:inverseOf :isMemberOfGroup ;
+                rdf:type owl:InverseFunctionalProperty ;
+                rdfs:domain :ResearchGroup ;
+                rdfs:range :Employee ;
+                rdfs:comment "hasGroupMember relates a research group with an employee who is part of the research group." ;
+                rdfs:label "hasGroupMember" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#hasInstitute
+:hasInstitute rdf:type owl:ObjectProperty ;
+              owl:inverseOf :isInstituteOf ;
+              rdf:type owl:InverseFunctionalProperty ;
+              rdfs:domain :ResearchOrganization ;
+              rdfs:range :Institute ;
+              rdfs:comment "hasInstitute relates a research organization with one of the institutes it consits of." ;
+              rdfs:label "hasInstitute" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#hasLaboratory
+:hasLaboratory rdf:type owl:ObjectProperty ;
+               owl:inverseOf :isLaboratoryOf ;
+               rdf:type owl:InverseFunctionalProperty ;
+               rdfs:domain :Institute ;
+               rdfs:range :Laboratory ;
+               rdfs:comment "hasLaboratory relates an institute with a laboratory that is part of it." ;
+               rdfs:label "hasLaboratory" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#hasLaboratoryMember
+:hasLaboratoryMember rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf :hasMember ;
+                     owl:inverseOf :isMemberOfLaboratory ;
+                     rdf:type owl:InverseFunctionalProperty ;
+                     rdfs:domain :Laboratory ;
+                     rdfs:range :Employee ;
+                     rdfs:comment "hasLaboratoryMember relates a laboratory with an employee who works in the laboratory." ;
+                     rdfs:label "hasLaboratoryMember" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#hasLocation
+:hasLocation rdf:type owl:ObjectProperty ;
+             owl:inverseOf :isLocationOf ;
+             rdf:type owl:FunctionalProperty ;
+             rdfs:domain :Building ;
+             rdfs:range dctypes:Location ;
+             rdfs:comment "hasLocation relates a building and the location it resides in." ;
+             rdfs:label "hasLocation" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#hasMember
+:hasMember rdf:type owl:ObjectProperty ;
+           owl:inverseOf :isMemberOf ;
+           rdfs:comment "hasMember is a superproperty of: hasGroupMember and hasLaboratoryMember." ;
+           rdfs:label "hasMember" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#hasOffice
+:hasOffice rdf:type owl:ObjectProperty ;
+           owl:inverseOf :hostsEmployee ;
+           rdf:type owl:FunctionalProperty ;
+           rdfs:domain :Employee ;
+           rdfs:range :Office ;
+           rdfs:comment "hasOffice relates an employee and their office." ;
+           rdfs:label "hasOffice" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#hasResearchGroup
+:hasResearchGroup rdf:type owl:ObjectProperty ;
+                  owl:inverseOf :isResearchGroupOf ;
+                  rdfs:domain :Laboratory ;
+                  rdfs:range :ResearchGroup ;
+                  rdfs:comment "hasResearchGroup relates a laboratory with a research group who works in it." ;
+                  rdfs:label "hasResearchGroup" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#hostsEmployee
+:hostsEmployee rdf:type owl:ObjectProperty ,
+                        owl:InverseFunctionalProperty ;
+               rdfs:domain :Office ;
+               rdfs:range :Employee ;
+               rdfs:comment "hostsEmployee relates an office and the employee(s) it belongs to." ;
+               rdfs:label "hostsEmployee" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#isBuildingOf
+:isBuildingOf rdf:type owl:ObjectProperty ,
+                       owl:FunctionalProperty ;
+              rdfs:domain :Building ;
+              rdfs:range :Institute ;
+              rdfs:comment "isBuildingOf relates a building and the institute located in it." ;
+              rdfs:label "isBuildingOf" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#isContainedIn
+:isContainedIn rdf:type owl:ObjectProperty ,
+                        owl:FunctionalProperty ;
+               rdfs:domain :Office ;
+               rdfs:range :Building ;
+               rdfs:comment "isContainedIn relates an office and the building it is contained in." ;
+               rdfs:label "isContainedIn" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#isDirectorOf
+:isDirectorOf rdf:type owl:ObjectProperty ,
+                       owl:InverseFunctionalProperty ;
+              rdfs:domain :ResearchDirector ;
+              rdfs:range :Institute ;
+              rdfs:comment "isDirectorOf relates a director with the institute they are director of." ;
+              rdfs:label "isDirectorOf" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#isInstituteOf
+:isInstituteOf rdf:type owl:ObjectProperty ,
+                        owl:FunctionalProperty ;
+               rdfs:domain :Institute ;
+               rdfs:range :ResearchOrganization ;
+               rdfs:comment "isInstituteOf relates an institute with a research organization it is subpart of." ;
+               rdfs:label "isInstituteOf" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#isLaboratoryOf
+:isLaboratoryOf rdf:type owl:ObjectProperty ,
+                         owl:FunctionalProperty ;
+                rdfs:domain :Laboratory ;
+                rdfs:range :Institute ;
+                rdfs:comment "isLaboratoryOf relates a laboratory with an institute it is part of." ;
+                rdfs:label "isLaboratoryOf" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#isLocationOf
+:isLocationOf rdf:type owl:ObjectProperty ,
+                       owl:InverseFunctionalProperty ;
+              rdfs:domain dctypes:Location ;
+              rdfs:range :Building ;
+              rdfs:comment "isLocationOf relates a location and the building that resides in that location." ;
+              rdfs:label "isLocationOf" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#isMemberOf
+:isMemberOf rdf:type owl:ObjectProperty ;
+            rdfs:comment "isMemberOf is a superproperty of: isMemberOfLaboratory and isMemberOfGroup." ;
+            rdfs:label "isMemberOf" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#isMemberOfGroup
+:isMemberOfGroup rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :isMemberOf ;
+                 rdf:type owl:FunctionalProperty ;
+                 rdfs:domain :Employee ;
+                 rdfs:range :ResearchGroup ;
+                 rdfs:comment "isMemberOfGroup relates an employee with a research group they are part of." ;
+                 rdfs:label "isMemberOfGroup" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#isMemberOfLaboratory
+:isMemberOfLaboratory rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf :isMemberOf ;
+                      rdf:type owl:FunctionalProperty ;
+                      rdfs:domain :Employee ;
+                      rdfs:range :Laboratory ;
+                      rdfs:comment "isMemberOfLaboratory relates an employee with a laboratory they work in." ;
+                      rdfs:label "isMemberOfLaboratory" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#isResearchGroupOf
+:isResearchGroupOf rdf:type owl:ObjectProperty ;
+                   rdfs:domain :ResearchGroup ;
+                   rdfs:range :Laboratory ;
+                   rdfs:comment "isResearchGroupOf relates a research group with the laboratory they work in." ;
+                   rdfs:label "isResearchGroupOf" .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#hasCreationDate
+:hasCreationDate rdf:type owl:DatatypeProperty ,
+                          owl:FunctionalProperty ;
+                 rdfs:domain :Institute ;
+                 rdfs:range xsd:dateTime ;
+                 rdfs:comment "hasCreationDate relates an institute with the date it was created in." ;
+                 rdfs:label "hasCreationDate" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#hasEmployeeID
+:hasEmployeeID rdf:type owl:DatatypeProperty ,
+                        owl:FunctionalProperty ;
+               rdfs:domain :Employee ;
+               rdfs:range xsd:positiveInteger ;
+               rdfs:comment "hasEmployeeID relates an employee and its unique numerical ID." ;
+               rdfs:label "hasEmployeeID" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#hasInstituteID
+:hasInstituteID rdf:type owl:DatatypeProperty ,
+                         owl:FunctionalProperty ;
+                rdfs:domain :Institute ;
+                rdfs:range xsd:positiveInteger ;
+                rdfs:comment "hasInstituteID relates an institute and its unique numerical ID." ;
+                rdfs:label "hasInstituteID" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#hasInstituteName
+:hasInstituteName rdf:type owl:DatatypeProperty ,
+                           owl:FunctionalProperty ;
+                  rdfs:domain :Institute ;
+                  rdfs:range xsd:string ;
+                  rdfs:comment "hasInstituteName  relates an institute and its name." ;
+                  rdfs:label "hasInstituteName" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#hasLaboratoryName
+:hasLaboratoryName rdf:type owl:DatatypeProperty ,
+                            owl:FunctionalProperty ;
+                   rdfs:domain :Laboratory ;
+                   rdfs:range xsd:string ;
+                   rdfs:comment "hasLaboratoryName  relates a laboratory and its name." ;
+                   rdfs:label "hasLaboratoryName" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#hasResearchGroupName
+:hasResearchGroupName rdf:type owl:DatatypeProperty ,
+                               owl:FunctionalProperty ;
+                      rdfs:domain :ResearchGroup ;
+                      rdfs:range xsd:string ;
+                      rdfs:comment "hasResearchGroupName relates a research group and its name." ;
+                      rdfs:label "hasResearchGroupName" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://purl.org/dc/dcmitype#Location
+dctypes:Location rdf:type owl:Class ;
+                 rdfs:comment "A spatial region or named place." ;
+                 rdfs:label "Location" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#Administrator
+:Administrator rdf:type owl:Class ;
+               rdfs:subClassOf :Employee ;
+               rdfs:comment "An administrator is a type of employee member of the administrative staff." ;
+               rdfs:label "Administrator" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#Building
+:Building rdf:type owl:Class ;
+          rdfs:subClassOf [ rdf:type owl:Restriction ;
+                            owl:onProperty :containsOffice ;
+                            owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+                            owl:onClass :Office
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasLocation ;
+                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onClass dctypes:Location
+                          ] ;
+          rdfs:comment "A building contains various offices and is situated in exactly one location. It is part of an Institute." ;
+          rdfs:label "Building" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#Employee
+:Employee rdf:type owl:Class ;
+          rdfs:subClassOf <http://xmlns.com/foaf/0.1/Person> ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasContractWith ;
+                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onClass :ResearchOrganization
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasOffice ;
+                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onClass :Office
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasEmployeeID ;
+                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onDataRange xsd:positiveInteger
+                          ] ;
+          owl:hasKey ( :hasEmployeeID
+                     ) ;
+          rdfs:comment "An employee is a person who has exactly one contract with a Research Organization. An employee can be a researcher, technologist, graduate fellow, postdoctoral fellow or an adiministrator. An employee is identified uniquely by an ID and has exactly one office." ;
+          rdfs:label "Employee" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#GraduateFellow
+:GraduateFellow rdf:type owl:Class ;
+                rdfs:subClassOf :Employee ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :isMemberOfGroup ;
+                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                  owl:onClass :ResearchGroup
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :isMemberOfLaboratory ;
+                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                  owl:onClass :Laboratory
+                                ] ;
+                rdfs:comment "A graduate fellow is a type of employee, member of exactly one laboratory and exactly one research group." ;
+                rdfs:label "Graduate fellow" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#Institute
+:Institute rdf:type owl:Class ;
+           rdfs:subClassOf [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasBuilding ;
+                             owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onClass :Building
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasLaboratory ;
+                             owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+                             owl:onClass :Laboratory
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasDirector ;
+                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onClass :ResearchDirector
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasCreationDate ;
+                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onDataRange xsd:dateTime
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasInstituteID ;
+                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onDataRange xsd:positiveInteger
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasInstituteName ;
+                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onDataRange xsd:string
+                           ] ;
+           owl:hasKey ( :hasCreationDate
+                        :hasInstituteID
+                      ) ;
+           rdfs:comment "An institute is a subpart of a research organization. It is located in a building and has more than one laboratory. An institute is identified by an ID and the date of its creation." ;
+           rdfs:label "Institute" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#Laboratory
+:Laboratory rdf:type owl:Class ;
+            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasResearchGroup ;
+                              owl:someValuesFrom :ResearchGroup
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasLaboratoryName ;
+                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                              owl:onDataRange xsd:string
+                            ] ;
+            rdfs:comment "A laboratory belongs to an institute. It has at least one research group." ;
+            rdfs:label "Laboratory" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#Office
+:Office rdf:type owl:Class ;
+        rdfs:subClassOf [ rdf:type owl:Restriction ;
+                          owl:onProperty :hostsEmployee ;
+                          owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onClass :Employee
+                        ] ;
+        rdfs:comment "An office is contained in a building and hosts one or more employees." ;
+        rdfs:label "Office" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#PostDoctoralFellow
+:PostDoctoralFellow rdf:type owl:Class ;
+                    rdfs:subClassOf :Employee ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :isMemberOfGroup ;
+                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                      owl:onClass :ResearchGroup
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :isMemberOfLaboratory ;
+                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                      owl:onClass :Laboratory
+                                    ] ;
+                    rdfs:comment "A postdoctoral fellow is a type of employee, member of exactly one laboratory and exactly one research group." ;
+                    rdfs:label "Postdoctoral fellow" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#ResearchDirector
+:ResearchDirector rdf:type owl:Class ;
+                  rdfs:subClassOf :Researcher ;
+                  rdfs:comment "A director is a specific type of researcher." ;
+                  rdfs:label "Director" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#ResearchGroup
+:ResearchGroup rdf:type owl:Class ;
+               rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasResearchGroupName ;
+                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onDataRange xsd:string
+                               ] ;
+               rdfs:comment "A research group is a subpart of a research organization." ;
+               rdfs:label "Research group" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#ResearchOrganization
+:ResearchOrganization rdf:type owl:Class ;
+                      rdfs:subClassOf <http://xmlns.com/foaf/0.1/Organization> ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :hasInstitute ;
+                                        owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+                                        owl:onClass :Institute
+                                      ] ;
+                      rdfs:comment "A research organization is a specific type of organization concerned with research. It has different institutes with laboratories and research groups working in them." ;
+                      rdfs:label "Research Organization" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#Researcher
+:Researcher rdf:type owl:Class ;
+            rdfs:subClassOf :Employee ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :isMemberOfGroup ;
+                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                              owl:onClass :ResearchGroup
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :isMemberOfLaboratory ;
+                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                              owl:onClass :Laboratory
+                            ] ;
+            owl:disjointUnionOf ( :ResearchDirector
+                                  :SeniorResearcher
+                                  :YoungResearcher
+                                ) ;
+            rdfs:comment "A researcher is an employee, member of exactly one laboratory and exactly one research group. Specifically, a researcher can be a young researcher, a senior researcher or a director." ;
+            rdfs:label "Researcher" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#SeniorResearcher
+:SeniorResearcher rdf:type owl:Class ;
+                  rdfs:subClassOf :Researcher ;
+                  rdfs:comment "A senior researcher is a specific type of researcher." ;
+                  rdfs:label "Senior researcher" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#Technologist
+:Technologist rdf:type owl:Class ;
+              rdfs:subClassOf :Employee ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :isMemberOfGroup ;
+                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onClass :ResearchGroup
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :isMemberOfLaboratory ;
+                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onClass :Laboratory
+                              ] ;
+              rdfs:comment "A technologist is a type of employee, member of exactly one laboratory and exactly one research group." ;
+              rdfs:label "Technologist" .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#YoungResearcher
+:YoungResearcher rdf:type owl:Class ;
+                 rdfs:subClassOf :Researcher ;
+                 rdfs:comment "A young researcher is a specific type of researcher." ;
+                 rdfs:label "Young researcher" .
+
+
+###  http://xmlns.com/foaf/0.1/Organization
+<http://xmlns.com/foaf/0.1/Organization> rdf:type owl:Class ;
+                                         rdfs:comment "An organization can be a social instititution such as companies, societies etc." ;
+                                         rdfs:label "Organization"^^xsd:string .
+
+
+###  http://xmlns.com/foaf/0.1/Person
+<http://xmlns.com/foaf/0.1/Person> rdf:type owl:Class ;
+                                   rdfs:comment "A person is a human being." ;
+                                   rdfs:label "Person" .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#Bari
+:Bari rdf:type owl:NamedIndividual ,
+               dctypes:Location ;
+      :isLocationOf :buildingP1 .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#Pisa
+:Pisa rdf:type owl:NamedIndividual ,
+               dctypes:Location ;
+      :isLocationOf :buildingCS1 ,
+                    :buildingCS2 ,
+                    :buildingCS3 .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#Turin
+:Turin rdf:type owl:NamedIndividual ,
+                dctypes:Location ;
+       :isLocationOf :buildingP2 .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#aldoRossi
+:aldoRossi rdf:type owl:NamedIndividual ,
+                    :GraduateFellow ;
+           :hasOffice :officeCS2b ;
+           :isMemberOfGroup :groupHCI ;
+           :isMemberOfLaboratory :labHIIS ;
+           :hasEmployeeID "128"^^xsd:positiveInteger .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#aliceBrown
+:aliceBrown rdf:type owl:NamedIndividual ,
+                     :YoungResearcher ;
+            :hasContractWith :organisationCNR ;
+            :hasOffice :officeP1a ;
+            :isMemberOfGroup :groupBari ;
+            :isMemberOfLaboratory :labBari ;
+            :hasEmployeeID "5080"^^xsd:positiveInteger .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#buildingCS1
+:buildingCS1 rdf:type owl:NamedIndividual ,
+                      :Building ;
+             :containsOffice :officeCS1a ,
+                             :officeCS1b ;
+             :hasLocation :Pisa ;
+             :isBuildingOf :instituteInformationScienceTech .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#buildingCS2
+:buildingCS2 rdf:type owl:NamedIndividual ,
+                      :Building ;
+             :containsOffice :officeCS2a ,
+                             :officeCS2b ;
+             :hasLocation :Pisa ;
+             :isBuildingOf :instituteInformationScienceTech .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#buildingCS3
+:buildingCS3 rdf:type owl:NamedIndividual ,
+                      :Building ;
+             :containsOffice :officeCS3a ,
+                             :officeCS3b ;
+             :hasLocation :Pisa ;
+             :isBuildingOf :instituteInformationScienceTech .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#buildingP1
+:buildingP1 rdf:type owl:NamedIndividual ,
+                     :Building ;
+            :containsOffice :officeP1a ,
+                            :officeP1b ;
+            :hasLocation :Bari ;
+            :isBuildingOf :institutePlantProtection .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#buildingP2
+:buildingP2 rdf:type owl:NamedIndividual ,
+                     :Building ;
+            :containsOffice :officeP2a ,
+                            :officeP2b ;
+            :hasLocation :Turin ;
+            :isBuildingOf :institutePlantProtection .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#feliceRossi
+:feliceRossi rdf:type owl:NamedIndividual ,
+                      :Technologist ;
+             :hasOffice :officeP2a ;
+             :isMemberOfGroup :groupTurin ;
+             :isMemberOfLaboratory :labTurin ;
+             :hasEmployeeID "2"^^xsd:positiveInteger .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#giorgioBianchi
+:giorgioBianchi rdf:type owl:NamedIndividual ,
+                         :ResearchDirector ;
+                :hasOffice :officeCS2b ;
+                :isDirectorOf :instituteInformationScienceTech ;
+                :hasEmployeeID "102"^^xsd:positiveInteger .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#groupAIMH
+:groupAIMH rdf:type owl:NamedIndividual ,
+                    :ResearchGroup .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#groupBari
+:groupBari rdf:type owl:NamedIndividual ,
+                    :ResearchGroup .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#groupHCI
+:groupHCI rdf:type owl:NamedIndividual ,
+                   :ResearchGroup ;
+          :hasGroupMember :johnSmith .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#groupHL
+:groupHL rdf:type owl:NamedIndividual ,
+                  :ResearchGroup .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#groupHumanLanguage
+:groupHumanLanguage rdf:type owl:NamedIndividual ,
+                             :ResearchGroup .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#groupTurin
+:groupTurin rdf:type owl:NamedIndividual ,
+                     :ResearchGroup .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#groupVisualAnalytics
+:groupVisualAnalytics rdf:type owl:NamedIndividual ,
+                               :ResearchGroup .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#instituteInformationScienceTech
+:instituteInformationScienceTech rdf:type owl:NamedIndividual ,
+                                          :Institute ;
+                                 :hasBuilding :buildingCS1 ,
+                                              :buildingCS2 ,
+                                              :buildingCS3 ;
+                                 :hasDirector :giorgioBianchi ;
+                                 :hasLaboratory :labAIMH ,
+                                                :labHIIS ,
+                                                :labKDD ;
+                                 :isInstituteOf :organisationCNR ;
+                                 :hasCreationDate "2005-07-15T00:00:01"^^xsd:dateTime ;
+                                 :hasInstituteID "200"^^xsd:positiveInteger .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#institutePlantProtection
+:institutePlantProtection rdf:type owl:NamedIndividual ,
+                                   :Institute ;
+                          :hasBuilding :buildingP1 ,
+                                       :buildingP2 ;
+                          :hasDirector :luigiVerdi ;
+                          :hasLaboratory :labBari ,
+                                         :labTurin ;
+                          :isInstituteOf :organisationCNR ;
+                          :hasCreationDate "2001-10-26T00:00:01"^^xsd:dateTime ;
+                          :hasInstituteID "100"^^xsd:positiveInteger .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#johnSmith
+:johnSmith rdf:type owl:NamedIndividual ,
+                    :SeniorResearcher ;
+           :isMemberOfGroup :groupHCI ;
+           :isMemberOfLaboratory :labHIIS ;
+           :hasEmployeeID "123"^^xsd:positiveInteger .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#labAIMH
+:labAIMH rdf:type owl:NamedIndividual ,
+                  :Laboratory ;
+         :hasResearchGroup :groupAIMH ,
+                           :groupHL ,
+                           :groupHumanLanguage ;
+         :hasLaboratoryName "AIMH"^^xsd:string .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#labBari
+:labBari rdf:type owl:NamedIndividual ,
+                  :Laboratory ;
+         :hasResearchGroup :groupBari ;
+         :hasLaboratoryName "Bari"^^xsd:string .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#labHIIS
+:labHIIS rdf:type owl:NamedIndividual ,
+                  :Laboratory ;
+         :hasResearchGroup :groupHCI ;
+         :hasLaboratoryName "HIIS"^^xsd:string .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#labKDD
+:labKDD rdf:type owl:NamedIndividual ,
+                 :Laboratory ;
+        :hasResearchGroup :groupVisualAnalytics ;
+        :hasLaboratoryName "KDD"^^xsd:string .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#labTurin
+:labTurin rdf:type owl:NamedIndividual ,
+                   :Laboratory ;
+          :hasResearchGroup :groupTurin ;
+          :hasLaboratoryName "Turin"^^xsd:string .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#luigiVerdi
+:luigiVerdi rdf:type owl:NamedIndividual ,
+                     :ResearchDirector ;
+            :hasEmployeeID "321"^^xsd:positiveInteger .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#maggieGreen
+:maggieGreen rdf:type owl:NamedIndividual ,
+                      :YoungResearcher ;
+             :isMemberOfGroup :groupHumanLanguage ;
+             :isMemberOfLaboratory :labAIMH ;
+             :hasEmployeeID "300"^^xsd:positiveInteger .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#mariaRossi
+:mariaRossi rdf:type owl:NamedIndividual ,
+                     :SeniorResearcher ;
+            :isMemberOfGroup :groupHumanLanguage ;
+            :isMemberOfLaboratory :labAIMH ;
+            :hasEmployeeID "400"^^xsd:positiveInteger .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#marioRossi
+:marioRossi rdf:type owl:NamedIndividual ,
+                     :PostDoctoralFellow ;
+            :isMemberOfGroup :groupVisualAnalytics ;
+            :isMemberOfLaboratory :labKDD ;
+            :hasEmployeeID "451"^^xsd:positiveInteger .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#officeCS1a
+:officeCS1a rdf:type owl:NamedIndividual ,
+                     :Office ;
+            :isContainedIn :buildingCS1 .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#officeCS1b
+:officeCS1b rdf:type owl:NamedIndividual ,
+                     :Office ;
+            :isContainedIn :buildingCS1 .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#officeCS2a
+:officeCS2a rdf:type owl:NamedIndividual ,
+                     :Office ;
+            :isContainedIn :buildingCS2 .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#officeCS2b
+:officeCS2b rdf:type owl:NamedIndividual ,
+                     :Office ;
+            :isContainedIn :buildingCS2 .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#officeCS3a
+:officeCS3a rdf:type owl:NamedIndividual ,
+                     :Office ;
+            :isContainedIn :buildingCS3 .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#officeCS3b
+:officeCS3b rdf:type owl:NamedIndividual ,
+                     :Office ;
+            :isContainedIn :buildingCS3 .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#officeP1a
+:officeP1a rdf:type owl:NamedIndividual ,
+                    :Office ;
+           :isContainedIn :buildingP1 .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#officeP1b
+:officeP1b rdf:type owl:NamedIndividual ,
+                    :Office ;
+           :isContainedIn :buildingP1 .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#officeP2a
+:officeP2a rdf:type owl:NamedIndividual ,
+                    :Office ;
+           :isContainedIn :buildingP2 .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#officeP2b
+:officeP2b rdf:type owl:NamedIndividual ,
+                    :Office ;
+           :isContainedIn :buildingP2 .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#organisationCNR
+:organisationCNR rdf:type owl:NamedIndividual ,
+                          :ResearchOrganization ;
+                 :hasInstitute :instituteInformationScienceTech ,
+                               :institutePlantProtection .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#pasqualeGiallo
+:pasqualeGiallo rdf:type owl:NamedIndividual ,
+                         :GraduateFellow ;
+                :hasOffice :officeCS2b ;
+                :isMemberOfGroup :groupHCI ;
+                :isMemberOfLaboratory :labHIIS ;
+                :hasEmployeeID "540"^^xsd:positiveInteger .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#philipJones
+:philipJones rdf:type owl:NamedIndividual ,
+                      :SeniorResearcher ;
+             :hasOffice :officeCS2b ;
+             :isMemberOfGroup :groupAIMH ;
+             :isMemberOfLaboratory :labAIMH ;
+             :hasEmployeeID "5800"^^xsd:positiveInteger .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#rosaBianchi
+:rosaBianchi rdf:type owl:NamedIndividual ,
+                      :GraduateFellow ;
+             :hasOffice :officeP2b ;
+             :isMemberOfGroup :groupTurin ;
+             :isMemberOfLaboratory :labTurin ;
+             :hasEmployeeID "5900"^^xsd:positiveInteger .
+
+
+###  http://www.semanticweb.org/marta/ontologies/2022/0/MeleroCavalloMartina#violaVerdi
+:violaVerdi rdf:type owl:NamedIndividual ,
+                     :Administrator ;
+            :hasOffice :officeCS1a ;
+            :isMemberOfGroup :groupHumanLanguage ;
+            :isMemberOfLaboratory :labAIMH ;
+            :hasEmployeeID "6918"^^xsd:positiveInteger .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( dctypes:Location
+                :Building
+                :Employee
+                :Institute
+                :Laboratory
+                :Office
+                :ResearchGroup
+                :ResearchOrganization
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Administrator
+                :GraduateFellow
+                :PostDoctoralFellow
+                :Researcher
+                :Technologist
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :ResearchDirector
+                :SeniorResearcher
+                :YoungResearcher
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointProperties ;
+  owl:members ( :hasCreationDate
+                :hasEmployeeID
+                :hasInstituteID
+                :hasInstituteName
+                :hasLaboratoryName
+                :hasResearchGroupName
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
